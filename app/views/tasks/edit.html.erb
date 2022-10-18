@@ -1,0 +1,52 @@
+<div class="container">
+  <h3>スケジュール編集</h3>
+
+  <%= render "shared/error", obj: @task %>
+
+  <ul class="new_message_ul">
+    <li class="new_message_li">☆ スケジュールは20文字以内で入力してください</li>
+    <li class="new_message_li">☆ スケジュールと日付は入力必須です</li>
+  </ul>
+
+  <%= form_with model: @task do |f| %>
+    <div class="newform">
+      <table class="new">
+        <tr>
+          <th><%= f.label :title, "スケジュール" %></th>
+          <td><%= f.text_field :title, placeholder: "スケジュールのタイトル" %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :start_date, "予定開始日" %></th>
+          <td><%= f.date_field :start_date %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :end_date, "予定終了日" %></th>
+          <td><%= f.date_field :end_date %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :all_day, "終日" %></th>
+          <td><%= f.check_box :all_day %><span class="small"> 終日スケジュールの場合はチェックしてください</span></td>
+        </tr>
+
+        <tr class="height_245">
+          <th><%= f.label :memo, "詳細（場所・メモ）" %></th>
+          <td><%= f.text_area :memo, placeholder: "スケジュールの場所や詳細などメモ&#13;&#10;改行はそのまま反映されます".html_safe %></td>
+        </tr>
+      </table>
+
+      <div class="buttons_show">
+        <div class="left_button">
+          <%= link_to "詳細に戻る", :task, class: "blue_button_show" %>
+        </div>
+        <div class="right_buttons">
+          <%= link_to "スケジュール一覧に戻る", :tasks, class: "blue_button" %>
+          <%= f.submit "完了", class: "blue_button" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+  

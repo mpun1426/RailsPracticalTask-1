@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TaskApp</title>
+    <title>PotepanスケジュールApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <header>
+      <h1><span class="bold"><span class="blue">P</span><span class="red">o</span><span class="yellow">t</span><span class="blue">e</span><span class="green">p</span><span class="red">a</span><span class="yellow">n</span></span>スケジュール</h1>
+    </header>
     <%= yield %>
+    <footer>
+      <h2>現在の日時：<%= Time.now.to_s(:datetime_jp) %></h2>
+    </footer>
   </body>
 </html>
