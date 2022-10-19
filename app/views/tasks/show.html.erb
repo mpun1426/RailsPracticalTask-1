@@ -1,0 +1,53 @@
+<% if @task.all_day %>
+  <% @all_day = "です" %>
+<% else %>
+  <% @all_day = "ではありません" %>
+<% end %>
+
+<div class="container">
+  <h3>スケジュール詳細</h3>
+
+  <ul class="new_message_ul">
+    <li class="new_message_li">スケジュールの詳細を表示します</li>
+    <li class="new_message_li">下記のボタンより編集や削除ができます</li>
+  </ul>
+
+  <div class="newform">
+    <table class="new">
+      <tr>
+        <th>スケジュール</th>
+        <td class="width_426"><span class="space"><%= @task.title %></span></td>
+      </tr>
+
+      <tr>
+        <th>開始日</th>
+        <td class="width_426"><span class="space"><%= @task.start_date.strftime("%Y/%m/%d") %></span></td>
+      </tr>
+
+      <tr>
+        <th>終了日</th>
+        <td class="width_426"><span class="space"><%= @task.end_date.strftime("%Y/%m/%d") %></span></td>
+      </tr>
+
+      <tr>
+        <th>終日</th>
+        <td class="width_426"><span class="space">終日<%= @all_day %></span></td>
+      </tr>
+
+      <tr class="height_245">
+        <th>詳細（場所・メモ）</th>
+        <td class="align_top_left"><div class="spaces"><%= simple_format(@task.memo) %></div></td>
+      </tr>
+    </table>
+
+    <div class="buttons_show">
+      <div class="left_button">
+        <%= link_to "削除", @task, method: :delete, class: "blue_button_show", data: {confirm: "本当に削除しますか？"} %>
+      </div>
+      <div class="right_buttons">
+      <%= link_to "編集", [:edit, @task], class: "blue_button" %>
+      <%= link_to "戻る", :tasks, class: "blue_button" %>
+      </div>
+    </div>
+  </div>
+</div>

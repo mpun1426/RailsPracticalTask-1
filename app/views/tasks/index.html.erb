@@ -1,0 +1,47 @@
+<% if flash[:notice] %>
+  <div class="notice_position">
+    <p class="notice"><%= flash[:notice] %></p>
+  </div>
+<% end %>
+
+<div class="container">
+  <div class="container_header">
+    <div><%= link_to "新しいスケジュール", :new_task, class: "blue_button" %></div>
+  </div>
+  <h3>スケジュール一覧（ <%= @tasks.count %>件 ）</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="min_width">スケジュール</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>終日</th>
+        <th>更新日時</th>
+        <th>詳細</th>
+        <th>編集</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @tasks.each do |task| %>
+        <% if task.all_day %>
+          <% @all_day = "○" %>
+        <% else %>
+          <% @all_day = "" %>
+        <% end %>
+        <tr>
+          <td class="min_width"><%= task.title %></td>
+          <td><%= task.start_date.strftime("%Y/%m/%d") %></td>
+          <td><%= task.end_date.strftime("%Y/%m/%d") %></td>
+          <td class="center"><%= @all_day %></td>
+          <td><%= task.updated_at.to_s(:datetime_jp) %></td>
+          <td><%= link_to "詳細", task %></td>
+          <td><%= link_to "編集", [:edit, task] %></td>
+          <td><%= link_to "削除", task, method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
