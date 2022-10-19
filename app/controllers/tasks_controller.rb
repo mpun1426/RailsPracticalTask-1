@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  def create
+  def create         #下記params以降のストロングパラメーターはprivate配下にtask_paramsを定義して置いて、ココにはtask_paramsを代入するように！
     @task = Task.new(params.require(:task).permit(:title, :start_date, :end_date, :all_day, :memo))
     if @task.save
       redirect_to :tasks
